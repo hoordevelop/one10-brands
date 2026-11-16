@@ -59,14 +59,16 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="relative lg:col-span-4">
-            <div className="relative border border-white/10 bg-panel/70 p-6">
-              <span className="absolute top-0 left-0 h-8 w-8 border-t border-l border-red" />
-              <span className="absolute right-0 bottom-0 h-8 w-8 border-r border-b border-red" />
-              <p className="font-display text-[7rem] leading-none text-white/90">10</p>
-              <p className="mt-2 text-sm leading-6 text-mist">
-                A full-service agency for companies that want the brand, the campaigns, and the systems behind them handled together.
-              </p>
-            </div>
+            <Tilt>
+              <div className="relative border border-white/10 bg-panel/70 p-6">
+                <span className="absolute top-0 left-0 h-8 w-8 border-t border-l border-red" />
+                <span className="absolute right-0 bottom-0 h-8 w-8 border-r border-b border-red" />
+                <p className="type-3d font-display text-[7rem] leading-none text-white/90">10</p>
+                <p className="mt-2 text-sm leading-6 text-mist">
+                  A full-service agency for companies that want the brand, the campaigns, and the systems behind them handled together.
+                </p>
+              </div>
+            </Tilt>
           </div>
         </div>
       </section>
@@ -120,8 +122,8 @@ export default async function HomePage() {
             {featured.map((service, index) => (
               <Tilt key={service.slug}>
                 <Link href={`/services/${service.slug}`} className="group block h-full border border-white/10 bg-ink p-6 transition hover:border-red">
-                  <p className="font-display text-3xl text-red">{String(index + 1).padStart(2, "0")}</p>
-                  <h3 className="mt-4 font-display text-4xl text-white">{service.name}</h3>
+                  <p className="type-3d font-display text-3xl text-red">{String(index + 1).padStart(2, "0")}</p>
+                  <h3 className="type-3d mt-4 font-display text-4xl text-white">{service.name}</h3>
                   <p className="mt-3 text-sm leading-7 text-mist">{service.summary}</p>
                   <span className="mt-6 inline-flex text-xs tracking-[0.18em] text-white uppercase">View service</span>
                 </Link>
@@ -134,12 +136,14 @@ export default async function HomePage() {
       <section id="why" className="mx-auto max-w-6xl px-5 py-24">
         <Eyebrow>Why One10</Eyebrow>
         <h2 className="mt-4 max-w-3xl font-display text-5xl text-white sm:text-6xl">A team you can brief once.</h2>
-        <div className="mt-12 grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {whyPoints.map((point) => (
-            <Reveal key={point.title} className="bg-ink p-6">
-              <h3 className="font-display text-3xl text-white">{point.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-mist">{point.text}</p>
-            </Reveal>
+            <Tilt key={point.title}>
+              <article className="h-full border border-white/10 bg-ink p-6">
+                <h3 className="type-3d font-display text-3xl text-white">{point.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-mist">{point.text}</p>
+              </article>
+            </Tilt>
           ))}
         </div>
       </section>
@@ -150,10 +154,14 @@ export default async function HomePage() {
           <h2 className="mt-4 font-display text-5xl text-white sm:text-6xl">Five stages. No mystery middle.</h2>
           <ol className="mt-12 grid gap-6 lg:grid-cols-5">
             {processSteps.map((step) => (
-              <li key={step.n} className="border-t border-red pt-5">
-                <p className="font-display text-4xl text-white">{step.n}</p>
-                <h3 className="mt-3 text-lg text-white">{step.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-mist">{step.text}</p>
+              <li key={step.n}>
+                <Tilt>
+                  <div className="h-full border border-white/10 bg-ink p-5">
+                    <p className="type-3d font-display text-4xl text-white">{step.n}</p>
+                    <h3 className="type-3d mt-3 text-lg text-white">{step.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-mist">{step.text}</p>
+                  </div>
+                </Tilt>
               </li>
             ))}
           </ol>
@@ -173,15 +181,17 @@ export default async function HomePage() {
           </div>
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {portfolio.slice(0, 3).map((item) => (
-              <article key={item.id} className="border border-white/10 p-6">
-                {item.sample ? (
-                  <p className="text-[0.68rem] tracking-[0.2em] text-white uppercase">
-                    <span className="bg-red px-1.5 py-0.5">Sample</span>
-                  </p>
-                ) : null}
-                <h3 className="mt-3 font-display text-3xl text-white">{item.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-mist">{item.summary}</p>
-              </article>
+              <Tilt key={item.id}>
+                <article className="h-full border border-white/10 bg-ink p-6">
+                  {item.sample ? (
+                    <p className="text-[0.68rem] tracking-[0.2em] text-white uppercase">
+                      <span className="bg-red px-1.5 py-0.5">Sample</span>
+                    </p>
+                  ) : null}
+                  <h3 className="type-3d mt-3 font-display text-3xl text-white">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-mist">{item.summary}</p>
+                </article>
+              </Tilt>
             ))}
           </div>
         </div>
@@ -192,13 +202,15 @@ export default async function HomePage() {
           <Eyebrow>Client words</Eyebrow>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             {testimonials.map((item) => (
-              <blockquote key={item.id} className="border border-white/10 p-6">
-                <p className="text-lg leading-8 text-white">“{item.quote}”</p>
-                <footer className="mt-4 text-sm text-mist">
-                  {item.attribution}
-                  {item.role ? ` — ${item.role}` : ""}
-                </footer>
-              </blockquote>
+              <Tilt key={item.id}>
+                <blockquote className="h-full border border-white/10 bg-ink p-6">
+                  <p className="type-3d text-lg leading-8 text-white">“{item.quote}”</p>
+                  <footer className="mt-4 text-sm text-mist">
+                    {item.attribution}
+                    {item.role ? ` — ${item.role}` : ""}
+                  </footer>
+                </blockquote>
+              </Tilt>
             ))}
           </div>
         </section>
@@ -213,12 +225,14 @@ export default async function HomePage() {
               All questions
             </Link>
           </div>
-          <div className="divide-y divide-white/10 border-y border-white/10">
+          <div className="grid gap-3">
             {faqs.slice(0, 4).map((item) => (
-              <details key={item.id} className="group py-4">
-                <summary className="cursor-pointer list-none text-lg text-white">{item.question}</summary>
-                <p className="pt-3 text-sm leading-7 text-mist">{item.answer}</p>
-              </details>
+              <Tilt key={item.id}>
+                <details className="group border border-white/10 bg-ink px-4 py-4">
+                  <summary className="type-3d cursor-pointer list-none text-lg text-white">{item.question}</summary>
+                  <p className="pt-3 text-sm leading-7 text-mist">{item.answer}</p>
+                </details>
+              </Tilt>
             ))}
           </div>
         </div>

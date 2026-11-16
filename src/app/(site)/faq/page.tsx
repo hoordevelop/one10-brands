@@ -1,4 +1,5 @@
 import { JsonLd } from "@/components/json-ld";
+import { Tilt } from "@/components/motion";
 import { ButtonLink, Eyebrow } from "@/components/ui";
 import { getFaqs } from "@/lib/content-store";
 import { pageMeta } from "@/lib/seo";
@@ -30,12 +31,14 @@ export default async function FaqPage() {
       />
       <Eyebrow>FAQ</Eyebrow>
       <h1 className="mt-4 font-display text-6xl text-white">Questions we get before a proposal.</h1>
-      <div className="mt-12 divide-y divide-white/10 border-y border-white/10">
+      <div className="mt-12 grid gap-3">
         {faqs.map((item) => (
-          <details key={item.id} className="group py-5">
-            <summary className="cursor-pointer text-xl text-white">{item.question}</summary>
-            <p className="pt-3 text-sm leading-7 text-mist">{item.answer}</p>
-          </details>
+          <Tilt key={item.id}>
+            <details className="group border border-white/10 bg-ink px-5 py-5">
+              <summary className="type-3d cursor-pointer text-xl text-white">{item.question}</summary>
+              <p className="pt-3 text-sm leading-7 text-mist">{item.answer}</p>
+            </details>
+          </Tilt>
         ))}
       </div>
       <div className="mt-12">

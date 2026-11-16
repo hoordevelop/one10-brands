@@ -1,5 +1,6 @@
 import { about, processSteps, whyPoints } from "@/content/story";
 import { JsonLd } from "@/components/json-ld";
+import { Tilt } from "@/components/motion";
 import { ButtonLink, Eyebrow } from "@/components/ui";
 import { pageMeta } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
@@ -44,10 +45,12 @@ export default async function AboutPage() {
           ["Vision", about.vision],
           ["Approach", about.approach],
         ].map(([title, text]) => (
-          <section key={title} className="border border-white/10 bg-panel p-6">
-            <h2 className="font-display text-4xl text-white">{title}</h2>
-            <p className="mt-4 text-sm leading-7 text-mist">{text}</p>
-          </section>
+          <Tilt key={title}>
+            <section className="h-full border border-white/10 bg-panel p-6">
+              <h2 className="type-3d font-display text-4xl text-white">{title}</h2>
+              <p className="mt-4 text-sm leading-7 text-mist">{text}</p>
+            </section>
+          </Tilt>
         ))}
       </div>
 
@@ -56,10 +59,12 @@ export default async function AboutPage() {
         <h2 className="mt-4 font-display text-5xl text-white">Six reasons the work stays in one place.</h2>
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {whyPoints.map((point) => (
-            <div key={point.title} className="border-t border-red pt-4">
-              <h3 className="text-xl text-white">{point.title}</h3>
-              <p className="mt-2 text-sm leading-7 text-mist">{point.text}</p>
-            </div>
+            <Tilt key={point.title}>
+              <div className="h-full border border-white/10 bg-ink p-5">
+                <h3 className="type-3d text-xl text-white">{point.title}</h3>
+                <p className="mt-2 text-sm leading-7 text-mist">{point.text}</p>
+              </div>
+            </Tilt>
           ))}
         </div>
       </section>
@@ -68,12 +73,16 @@ export default async function AboutPage() {
         <Eyebrow>How an engagement moves</Eyebrow>
         <ol className="mt-8 space-y-6">
           {processSteps.map((step) => (
-            <li key={step.n} className="grid gap-3 border-b border-white/10 pb-6 sm:grid-cols-[5rem_1fr]">
-              <span className="font-display text-3xl text-red">{step.n}</span>
-              <div>
-                <h3 className="text-xl text-white">{step.title}</h3>
-                <p className="mt-2 text-sm leading-7 text-mist">{step.text}</p>
-              </div>
+            <li key={step.n}>
+              <Tilt>
+                <div className="grid h-full gap-3 border border-white/10 bg-ink p-5 sm:grid-cols-[5rem_1fr]">
+                  <span className="type-3d font-display text-3xl text-red">{step.n}</span>
+                  <div>
+                    <h3 className="type-3d text-xl text-white">{step.title}</h3>
+                    <p className="mt-2 text-sm leading-7 text-mist">{step.text}</p>
+                  </div>
+                </div>
+              </Tilt>
             </li>
           ))}
         </ol>

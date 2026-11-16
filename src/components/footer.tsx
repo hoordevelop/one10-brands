@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { catalog } from "@/content/catalog";
 import type { PublicContact } from "@/lib/content-store";
+import { Tilt } from "@/components/motion";
 import { Mark, Placeholder } from "@/components/ui";
 
 export function Footer({ contact }: { contact: PublicContact }) {
@@ -9,7 +10,9 @@ export function Footer({ contact }: { contact: PublicContact }) {
     <footer className="relative z-10 border-t border-white/10 bg-ink">
       <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 md:grid-cols-12">
         <div className="md:col-span-4">
-          <Mark />
+          <Tilt>
+            <Mark />
+          </Tilt>
           <p className="mt-6 max-w-sm text-sm leading-7 text-mist">
             One10 Brands Marketing plans and builds the campaigns, sites, and systems that help a company grow.
           </p>
@@ -20,7 +23,7 @@ export function Footer({ contact }: { contact: PublicContact }) {
             {catalog.map((item) => (
               <li key={item.slug}>
                 <Link href={`/services/${item.slug}`} className="text-sm text-white/80 hover:text-white">
-                  {item.name}
+                  <span className="type-3d text-sm">{item.name}</span>
                 </Link>
               </li>
             ))}

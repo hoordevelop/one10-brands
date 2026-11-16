@@ -41,8 +41,8 @@ export default async function ServicesPage() {
           <Tilt key={service.slug}>
             <Link href={`/services/${service.slug}`} className="group flex h-full flex-col border border-white/10 bg-panel/40 p-6 transition hover:border-red">
               <div className="flex items-baseline justify-between gap-4">
-                <h2 className="font-display text-4xl text-white">{service.name}</h2>
-                <span className="font-display text-2xl text-red">{String(index + 1).padStart(2, "0")}</span>
+                <h2 className="type-3d font-display text-4xl text-white">{service.name}</h2>
+                <span className="type-3d font-display text-2xl text-red">{String(index + 1).padStart(2, "0")}</span>
               </div>
               <p className="mt-3 text-sm leading-7 text-mist">{service.outcome}</p>
               <span className="mt-6 text-xs tracking-[0.18em] text-white uppercase">Open</span>

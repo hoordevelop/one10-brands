@@ -54,6 +54,66 @@ body {
   }
 }
 
+.depth-frame {
+  perspective: 900px;
+}
+
+.depth-face {
+  position: relative;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 160ms ease-out;
+}
+
+.depth-face::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #2a090c;
+  border: 1px solid rgba(215, 25, 32, 0.45);
+  transform: translateZ(-16px);
+  opacity: 0;
+  transition: opacity 160ms ease-out;
+}
+
+.depth-frame:hover .depth-face::before {
+  opacity: 1;
+}
+
+.depth-face::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 30%), rgba(215, 25, 32, 0.28), transparent 46%);
+  opacity: 0;
+  transition: opacity 180ms ease-out;
+}
+
+.depth-frame:hover .depth-face::after {
+  opacity: 1;
+}
+
+.depth-face > * {
+  position: relative;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.type-3d {
+  display: inline-block;
+  color: #fff;
+  transform: translateZ(36px);
+  text-shadow:
+    0 1px 0 #6b1519,
+    0 2px 0 #5a1014,
+    0 3px 0 #490d11,
+    0 4px 0 #38090c,
+    0 5px 0 #270608,
+    0 8px 14px rgba(0, 0, 0, 0.72),
+    0 0 18px rgba(215, 25, 32, 0.28);
+}
+
 .sweep {
   background-image: linear-gradient(110deg, transparent 35%, rgba(215, 25, 32, 0.2) 50%, transparent 65%);
   background-size: 220% 100%;

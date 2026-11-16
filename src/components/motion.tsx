@@ -208,24 +208,30 @@ export function Counters() {
 }
 
 export function Tilt({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const frame = useRef<HTMLDivElement>(null);
+  const face = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
 
   function move(event: React.MouseEvent<HTMLDivElement>) {
-    if (reduce || !ref.current) return;
-    const box = ref.current.getBoundingClientRect();
+    if (reduce || !frame.current || !face.current) return;
+    const box = frame.current.getBoundingClientRect();
     const x = (event.clientX - box.left) / box.width - 0.5;
     const y = (event.clientY - box.top) / box.height - 0.5;
-    ref.current.style.transform = `perspective(900px) rotateY(${x * 7}deg) rotateX(${-y * 7}deg)`;
+    face.current.style.transform = `rotateY(${x * 16}deg) rotateX(${-y * 16}deg) translateZ(18px)`;
+    frame.current.style.setProperty("--mx", `${(x + 0.5) * 100}%`);
+    frame.current.style.setProperty("--my", `${(y + 0.5) * 100}%`);
   }
 
   function leave() {
-    if (ref.current) ref.current.style.transform = "";
+    if (!face.current) return;
+    face.current.style.transform = "rotateY(0deg) rotateX(0deg) translateZ(0px)";
   }
 
   return (
-    <div ref={ref} onMouseMove={move} onMouseLeave={leave} className={`transition-transform duration-300 ${className}`}>
-      {children}
+    <div ref={frame} onMouseMove={move} onMouseLeave={leave} className={`depth-frame h-full ${className}`}>
+      <div ref={face} className="depth-face h-full">
+        {children}
+      </div>
     </div>
   );
 }

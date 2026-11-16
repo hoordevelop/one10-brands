@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/contact-form";
+import { Tilt } from "@/components/motion";
 import { Eyebrow, Placeholder } from "@/components/ui";
 import { getPublicContact } from "@/lib/content-store";
 import { pageMeta } from "@/lib/seo";
@@ -22,7 +23,8 @@ export default async function ContactPage() {
         <p className="mt-6 text-base leading-8 text-mist">
           Tell us the business, the service you need, and what a useful outcome looks like. We reply with questions or a proposal. Sending the form does not create a contract.
         </p>
-        <div className="mt-10 space-y-6 border border-white/10 p-5">
+        <Tilt>
+        <div className="mt-10 space-y-6 border border-white/10 bg-ink p-5">
           <div>
             <p className="text-[0.72rem] tracking-[0.18em] text-mist uppercase">WhatsApp</p>
             <a className="mt-2 inline-flex text-white" href={`https://wa.me/${contact.whatsappE164}`}>
@@ -43,10 +45,13 @@ export default async function ContactPage() {
             </a>
           </div>
         </div>
+        </Tilt>
       </div>
-      <div className="border border-white/10 bg-panel/40 p-6 lg:col-span-7">
+      <Tilt className="lg:col-span-7">
+      <div className="h-full border border-white/10 bg-panel/40 p-6">
         <ContactForm />
       </div>
+      </Tilt>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Tilt } from "@/components/motion";
 import { Mark } from "@/components/ui";
 
 const links = [
@@ -38,9 +39,11 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-ink">
       <div className="mx-auto flex h-[4.5rem] max-w-6xl items-center justify-between gap-4 px-5">
-        <Link href="/" className="shrink-0">
-          <Mark />
-        </Link>
+        <Tilt className="shrink-0">
+          <Link href="/" className="inline-flex">
+            <Mark />
+          </Link>
+        </Tilt>
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
           {links.map((link) => {
             const active = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);

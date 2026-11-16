@@ -38,10 +38,10 @@ export function Mark() {
   return (
     <span className="inline-flex items-center gap-3">
       <span className="grid h-10 w-10 place-items-center border border-red font-display text-lg leading-none text-white">
-        10
+        <span className="type-3d">10</span>
       </span>
       <span>
-        <span className="block font-display text-[1.7rem] leading-none tracking-[0.16em] text-white">
+        <span className="type-3d block font-display text-[1.7rem] leading-none tracking-[0.16em] text-white">
           ONE10
         </span>
         <span className="mt-1 hidden text-[0.58rem] tracking-[0.32em] text-mist sm:block">BRANDS MARKETING</span>
