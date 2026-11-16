@@ -15,15 +15,44 @@ export function jsonOk(body: Record<string, unknown>, status = 200) {
   );
 }
 
-export function sameOrigin(req: Request) {
-  const origin = req.headers.get("origin");
-  const host = req.headers.get("x-forwarded-host") ?? req.headers.get("host");
-  if (!origin || !host) return false;
+function hostName(value: string) {
+  const trimmed = value.trim();
+  if (!trimmed) return "";
   try {
-    return new URL(origin).host === host;
+    return new URL(trimmed.includes("://") ? trimmed : `https://${trimmed}`).hostname.toLowerCase();
   } catch {
-    return false;
+    return "";
   }
+}
+
+export function sameOrigin(req: Request) {
+  // Browsers set this and pages cannot forge it. The published host header
+  // is often an internal proxy name, so a raw host compare rejects the real site.
+  const site = req.headers.get("sec-fetch-site");
+  if (site === "same-origin") return true;
+  if (site === "cross-site" || site === "same-site") return false;
+
+  const origin = req.headers.get("origin");
+  if (!origin) return false;
+  const originHost = hostName(origin);
+  if (!originHost) return false;
+  const seen = [
+    req.headers.get("host"),
+    req.headers.get("x-forwarded-host"),
+    req.headers.get("x-original-host"),
+  ];
+  try {
+    seen.push(new URL(req.url).host);
+  } catch {
+    // req.url can be relative inside the runtime.
+  }
+  for (const value of seen) {
+    if (!value) continue;
+    for (const part of value.split(",")) {
+      if (hostName(part) === originHost) return true;
+    }
+  }
+  return false;
 }
 
 export function clientIp(req: Request) {

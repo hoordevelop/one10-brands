@@ -82,6 +82,7 @@ export function ContactForm() {
     }
     if (!challengeId) {
       setMessage("The form is still preparing. Wait a moment.");
+      void prepare();
       return;
     }
     setBusy(true);
@@ -174,10 +175,10 @@ export function ContactForm() {
       </p>
       <button
         type="submit"
-        disabled={busy || !ready || email !== null}
+        disabled={busy || email !== null || (!ready && !message)}
         className="inline-flex min-h-12 items-center bg-red px-6 text-[0.78rem] font-semibold tracking-[0.16em] text-white uppercase disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {busy ? "Sending" : email ? "Inquiry saved" : ready ? "Send inquiry" : "Preparing form"}
+        {busy ? "Sending" : email ? "Inquiry saved" : ready ? "Send inquiry" : message ? "Try again" : "Preparing form"}
       </button>
       <div role="status" aria-live="polite" className="min-h-6 text-sm text-white">
         {message}
