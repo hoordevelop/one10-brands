@@ -56,15 +56,17 @@ export async function getPublicContact(): Promise<PublicContact> {
   const whatsappOk = /^\d{8,15}$/.test(whatsapp) && !/^0+$/.test(whatsapp);
   const email = map.get("public_email") ?? "";
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && !email.endsWith("@example.com");
+  const publishedWhatsapp = whatsappOk ? whatsapp : siteDefaults.whatsappE164;
+  const publishedEmail = emailOk ? email : siteDefaults.email;
   const socials = SOCIAL_KEYS.flatMap(([key, label]) => {
     const href = httpsUrl(map.get(key) ?? "");
     return href ? [{ label, href }] : [];
   });
   return {
-    whatsappE164: whatsappOk ? whatsapp : siteDefaults.whatsappE164,
-    whatsappIsPlaceholder: !whatsappOk || whatsapp === PLACEHOLDER_WHATSAPP,
-    email: emailOk ? email : siteDefaults.email,
-    emailIsPlaceholder: !emailOk || email === PLACEHOLDER_EMAIL,
+    whatsappE164: publishedWhatsapp,
+    whatsappIsPlaceholder: publishedWhatsapp === PLACEHOLDER_WHATSAPP || /^0+$/.test(publishedWhatsapp),
+    email: publishedEmail,
+    emailIsPlaceholder: publishedEmail === PLACEHOLDER_EMAIL || publishedEmail.toLowerCase().endsWith("@example.com"),
     socials,
   };
 }

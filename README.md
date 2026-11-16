@@ -18,13 +18,13 @@ Open `/admin` after `ADMIN_PASSWORD` is set.
 - Inquiries: every form submission, including when email is not connected.
 - Content: WhatsApp, email, social links, service summaries, FAQs, portfolio, and testimonials.
 
-Leave contact fields blank to keep the labeled placeholders. Testimonials stay off the public site until you publish a real, approved quote. Portfolio cards should stay marked Sample until they are real projects. Do not invent clients or results.
+Leave contact fields blank to keep the WhatsApp number and email in `src/content/site.ts`. Testimonials stay off the public site until you publish a real, approved quote. Portfolio cards should stay marked Sample until they are real projects. Do not invent clients or results.
 
 ## Edit in the repository
 
 | File | What it controls |
 | --- | --- |
-| `src/content/site.ts` | Default placeholder WhatsApp number and email |
+| `src/content/site.ts` | Default WhatsApp number and public email |
 | `src/content/services.ts` | Full service pages. Studio can override the summary, outcome, and opening only |
 | `src/content/story.ts` | About copy, why One10, and the five process stages |
 | `src/content/faq.ts` | Built-in FAQs, used until Studio saves its own |

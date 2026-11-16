@@ -154,7 +154,7 @@ export function StudioEditor({
       </p>
       <section>
         <h2 className="font-display text-4xl text-white">Contact details</h2>
-        <p className="mt-2 text-sm text-mist">Leave a field blank to keep the public placeholder. Do not save example.com or an all-zero number.</p>
+        <p className="mt-2 text-sm text-mist">Leave a field blank to keep the published number and email. Do not save example.com or an all-zero number.</p>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           {(
             [

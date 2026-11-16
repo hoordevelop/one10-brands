@@ -45,7 +45,7 @@ export default function TermsPage() {
         <section>
           <h2 className="text-xl text-white">Contact details</h2>
           <p className="mt-2">
-            Placeholder phone and email values are labeled. They are not a representation that a message to those placeholders will reach the company.
+            The WhatsApp number and email on the contact page are how to reach One10. This page does not state a street address or a registered office.
           </p>
         </section>
       </div>

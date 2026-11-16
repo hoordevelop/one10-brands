@@ -43,7 +43,7 @@ export function Footer({ contact }: { contact: PublicContact }) {
           <ul className="mt-4 space-y-3 text-sm">
             <li>
               <a className="hover:text-white" href={`https://wa.me/${contact.whatsappE164}`}>
-                WhatsApp
+                {contact.whatsappIsPlaceholder ? "WhatsApp" : `WhatsApp +${contact.whatsappE164}`}
                 {contact.whatsappIsPlaceholder ? <Placeholder>Placeholder</Placeholder> : null}
               </a>
             </li>

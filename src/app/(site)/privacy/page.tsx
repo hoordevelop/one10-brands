@@ -51,7 +51,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-xl text-white">How long, and your requests</h2>
           <p className="mt-2">
-            [Set a retention period.] Until that decision is written down, treat inquiries as kept for as long as the conversation may continue. To ask about a submission, use the contact details published on the contact page. Placeholder phone and email values are not a monitored inbox.
+            [Set a retention period.] Until that decision is written down, treat inquiries as kept for as long as the conversation may continue. To ask about a submission, use the WhatsApp number and email on the contact page.
           </p>
         </section>
       </div>

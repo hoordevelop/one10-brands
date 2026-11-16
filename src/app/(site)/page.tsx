@@ -4,16 +4,17 @@ import { about, processSteps, whyPoints } from "@/content/story";
 import { JsonLd } from "@/components/json-ld";
 import { Counters, HeroGlow, Reveal, Tilt } from "@/components/motion";
 import { ButtonLink, Eyebrow } from "@/components/ui";
-import { getFaqs, getPortfolio, getServices, getTestimonials } from "@/lib/content-store";
+import { getFaqs, getPortfolio, getPublicContact, getServices, getTestimonials } from "@/lib/content-store";
 import { getSiteUrl } from "@/lib/site-url";
 
 export default async function HomePage() {
-  const [services, faqs, portfolio, testimonials, siteUrl] = await Promise.all([
+  const [services, faqs, portfolio, testimonials, siteUrl, contact] = await Promise.all([
     getServices(),
     getFaqs(),
     getPortfolio(),
     getTestimonials(),
     getSiteUrl(),
+    getPublicContact(),
   ]);
   const featured = services.slice(0, 4);
 
@@ -28,6 +29,8 @@ export default async function HomePage() {
           description: about.lede,
           areaServed: "Worldwide",
           knowsAbout: catalog.map((item) => item.name),
+          ...(contact.emailIsPlaceholder ? {} : { email: contact.email }),
+          ...(contact.whatsappIsPlaceholder ? {} : { telephone: `+${contact.whatsappE164}` }),
         }}
       />
       <section className="relative overflow-hidden">

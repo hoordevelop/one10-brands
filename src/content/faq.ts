@@ -63,12 +63,12 @@ export const defaultFaqs: FaqItem[] = [
     id: "start",
     question: "How do we start?",
     answer:
-      "Send the contact form with the service you need and a short description of the business. If email notification is not connected yet, the inquiry is still saved, and the WhatsApp and email options on the contact page are labeled until the real details are added. A proposal follows the first conversation. An inquiry is not a contract.",
+      "Send the contact form with the service you need and a short description of the business. If email notification is not connected yet, the inquiry is still saved. You can also use the WhatsApp number and email on the contact page. A proposal follows the first conversation. An inquiry is not a contract.",
   },
   {
     id: "where",
     question: "Where are you based?",
     answer:
-      "One10 works with companies across markets. A street address and a company registration number are not published because they have not been supplied for this site. Do not treat any placeholder contact detail as a registered office.",
+      "One10 works with companies across markets. A street address and a company registration number are not published because they have not been supplied for this site. The phone and email on the contact page are not a registered office.",
   },
 ];
