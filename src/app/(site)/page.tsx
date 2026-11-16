@@ -2,6 +2,7 @@ import Link from "next/link";
 import { catalog } from "@/content/catalog";
 import { about, processSteps, whyPoints } from "@/content/story";
 import { JsonLd } from "@/components/json-ld";
+import { HeroScene } from "@/components/hero-scene";
 import { Counters, HeroGlow, Reveal, Tilt } from "@/components/motion";
 import { ButtonLink, Eyebrow } from "@/components/ui";
 import { getFaqs, getPortfolio, getPublicContact, getServices, getTestimonials } from "@/lib/content-store";
@@ -35,7 +36,12 @@ export default async function HomePage() {
       />
       <section className="relative overflow-hidden">
         <HeroGlow />
-        <div className="relative mx-auto grid min-h-[calc(100svh-4.5rem)] max-w-6xl items-end gap-12 px-5 pt-16 pb-20 lg:grid-cols-12">
+        <HeroScene />
+        <div
+          className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(100deg,rgba(9,9,9,0.94)_0%,rgba(9,9,9,0.78)_46%,rgba(9,9,9,0.28)_100%)]"
+          aria-hidden
+        />
+        <div className="relative z-10 mx-auto grid min-h-[calc(100svh-4.5rem)] max-w-6xl items-end gap-12 px-5 pt-16 pb-20 lg:grid-cols-12">
           <div className="lg:col-span-8">
             <Eyebrow>Digital growth partner</Eyebrow>
             <h1 className="mt-6 max-w-4xl font-display text-[clamp(3.4rem,8vw,7.2rem)] leading-[0.84] tracking-tight text-white">
